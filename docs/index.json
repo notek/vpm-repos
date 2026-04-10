@@ -6,7 +6,7 @@
   "packages": {
     "jp.notek.udonfs": {
       "versions": {
-        "0.0.5": {
+        "0.2.2": {
           "name": "jp.notek.udonfs",
           "displayName": "UdonFS",
           "version": "0.2.2",
