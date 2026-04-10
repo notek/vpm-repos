@@ -1,7 +1,7 @@
 {
   "name": "Notek VPM Repository",
   "author": "notoitoh",
-  "url": "https://notek.github.io/vpm-repos/index.json",
+  "url": "https://notek.github.io/vpm-repos/vpm.json",
   "id": "jp.notek.vpm-repos",
   "packages": {
     "jp.notek.udonfs": {

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notek VPM Repository</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      max-width: 560px;
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .author {
+      color: #8b949e;
+      margin-bottom: 2rem;
+    }
+    .add-btn {
+      display: inline-block;
+      background: #1f6feb;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.75rem 2rem;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .add-btn:hover { background: #388bfd; }
+    .note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #8b949e;
+    }
+    .packages {
+      margin-top: 2.5rem;
+      text-align: left;
+    }
+    .packages h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 0.5rem;
+    }
+    .package {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .package-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .package-version {
+      color: #8b949e;
+      font-size: 0.85rem;
+    }
+    .package-desc {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #c9d1d9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Notek VPM Repository</h1>
+    <p class="author">by 伊東ノト</p>
+    <a class="add-btn" href="vcc://vpm/addRepo?url=https://notek.github.io/vpm-repos/vpm.json">
+      Add to VCC
+    </a>
+    <p class="note">VRChat Creator Companion が起動してリポジトリが自動登録されます</p>
+    <div class="packages" id="packages"></div>
+  </div>
+  <script>
+    fetch("vpm.json")
+      .then(r => r.json())
+      .then(data => {
+        const el = document.getElementById("packages");
+        const pkgs = data.packages || {};
+        const entries = Object.entries(pkgs);
+        if (entries.length === 0) return;
+        let html = "<h2>Packages</h2>";
+        for (const [id, pkg] of entries) {
+          const versions = Object.keys(pkg.versions || {});
+          const latest = versions[0] || "?";
+          const info = pkg.versions[latest] || {};
+          html += `<div class="package">
+            <span class="package-name">${info.displayName || id}</span>
+            <span class="package-version"> v${latest}</span>
+            <p class="package-desc">${info.description || ""}</p>
+          </div>`;
+        }
+        el.innerHTML = html;
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
