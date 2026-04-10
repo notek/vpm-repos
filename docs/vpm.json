@@ -6,6 +6,23 @@
   "packages": {
     "jp.notek.udonfs": {
       "versions": {
+        "0.3.1": {
+          "name": "jp.notek.udonfs",
+          "displayName": "UdonFS",
+          "version": "0.3.1",
+          "unity": "2022.3",
+          "vpmDependencies": {
+            "com.vrchat.worlds": "^3.10.2"
+          },
+          "description": "A compiler for compiling F# to Udon assembly for VRChat worlds.",
+          "author": {
+            "name": "伊東ノト",
+            "email": "notoito.public+notek@gmail.com",
+            "url": "https://notoitoh.notek.jp"
+          },
+          "vrchatVersion": "2026.1.3",
+          "url": "https://github.com/notek/UdonFS/releases/download/0.3.1/jp.notek.udonfs-0.3.1.zip"
+        },
         "0.3.0": {
           "name": "jp.notek.udonfs",
           "displayName": "UdonFS",
